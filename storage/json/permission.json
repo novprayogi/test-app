@@ -1,0 +1,87 @@
+[
+  {
+    "id": 1,
+    "name": "users.index",
+    "guard_name":"web"
+  },
+  {
+    "id": 2,
+    "name": "users.create",
+    "guard_name":"web"
+  },
+  {
+    "id": 3,
+    "name": "users.edit",
+    "guard_name":"web"
+  },
+  {
+    "id": 4,
+    "name": "users.destroy",
+    "guard_name":"web"
+  },
+  {
+    "id": 5,
+    "name": "roles.index",
+    "guard_name":"web"
+  },
+  {
+    "id": 6,
+    "name": "roles.create",
+    "guard_name":"web"
+  },
+  {
+    "id": 7,
+    "name": "roles.edit",
+    "guard_name":"web"
+  },
+  {
+    "id": 8,
+    "name": "roles.destroy",
+    "guard_name":"web"
+  },
+  {
+    "id": 9,
+    "name": "groups.index",
+    "guard_name":"web"
+  },
+  {
+    "id": 10,
+    "name": "groups.create",
+    "guard_name":"web"
+  },
+  {
+    "id": 11,
+    "name": "groups.edit",
+    "guard_name":"web"
+  },
+  {
+    "id": 12,
+    "name": "groups.destroy",
+    "guard_name":"web"
+  },
+  {
+    "id": 13,
+    "name": "members.index",
+    "guard_name":"web"
+  },
+  {
+    "id": 14,
+    "name": "members.create",
+    "guard_name":"web"
+  },
+  {
+    "id": 15,
+    "name": "members.edit",
+    "guard_name":"web"
+  },
+  {
+    "id": 16,
+    "name": "members.destroy",
+    "guard_name":"web"
+  },
+  {
+    "id": 17,
+    "name": "members.import",
+    "guard_name":"web"
+  }
+]
