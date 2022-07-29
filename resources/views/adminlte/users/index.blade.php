@@ -16,6 +16,11 @@
                     <a href="{{route('users.create')}}" class="btn btn-primary">Tambah Data</a>
                 </div>
             </div>
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                </div>
+            @endif
             <!-- /.card-header -->
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped data-table">
