@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
 
     Route::resource('users',\App\Http\Controllers\UsersController::class);
+    Route::resource('roles',\App\Http\Controllers\RolesController::class);
 
     Route::get('/groups', function () {
         return view('adminlte.index');
@@ -36,11 +37,6 @@ Route::middleware('auth')->group(function () {
         return view('adminlte.index');
     })->name('members.index');
 
-
-
-    Route::get('/roles', function () {
-        return view('adminlte.index');
-    })->name('roles.index');
 
     Route::get('/permissions', function () {
         return view('adminlte.index');

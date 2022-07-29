@@ -69,12 +69,12 @@
                                 <p>Role</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{route('permissions.index')}}" class="nav-link {{ (request()->is('permissions*')) ? 'active' : '' }}">
-                                <i class="fa fa-filter nav-icon"></i>
-                                <p>Permission</p>
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{route('permissions.index')}}" class="nav-link {{ (request()->is('permissions*')) ? 'active' : '' }}">--}}
+{{--                                <i class="fa fa-filter nav-icon"></i>--}}
+{{--                                <p>Permission</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                     </ul>
                 </li>
             </ul>

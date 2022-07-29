@@ -9,7 +9,7 @@
             <div class="card card-primary">
                 <div class="card-header">
                     <a href="{{route('users.index')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i></a>
-                    <h3 class="card-title">Create</h3>
+{{--                    <h3 class="card-title">Create</h3>--}}
                 </div>
                 @if ($errors->any())
                     <div class="alert alert-danger">
