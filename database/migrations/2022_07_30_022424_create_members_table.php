@@ -18,8 +18,9 @@ class CreateMembersTable extends Migration
             $table->foreignId('group_id');
             $table->string('nama');
             $table->string('alamat');
+            $table->string('hp');
             $table->string('email');
-            $table->string('profile');
+            $table->string('profile')->nullable();
             $table->timestamps();
 
             $table->foreign('group_id')

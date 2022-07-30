@@ -10,6 +10,8 @@ class Member extends Model
     use HasFactory;
     protected $table = 'members';
     protected $fillable = [
+        'id',
+        'group_id',
         'nama',
         'alamat',
         'hp',

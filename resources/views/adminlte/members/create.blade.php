@@ -1,6 +1,6 @@
 @extends('layouts.backend-adminlte.app')
-@section('title','User Create')
-@section('breadcrumb','User Create')
+@section('title','Member Create')
+@section('breadcrumb','Member Create')
 @section('content')
     <div class="row">
         <!-- left column -->
@@ -8,7 +8,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
                 <div class="card-header">
-                    <a href="{{route('users.index')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i></a>
+                    <a href="{{route('members.index')}}" class="btn btn-primary"><i class="fa fa-arrow-left"></i></a>
 {{--                    <h3 class="card-title">Create</h3>--}}
                 </div>
                 @if ($errors->any())
@@ -22,10 +22,10 @@
                 @endif
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form method="POST" action="{{route('users.store')}}">
+                <form method="POST" action="{{route('members.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
-                        @include('adminlte.users.fields')
+                        @include('adminlte.members.fields')
                     </div>
                 </form>
             </div>

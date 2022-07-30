@@ -1,30 +1,31 @@
 <div class="form-group">
-    <label for="forName">Name</label>
-    <input type="text" class="form-control" id="forName" name="name" placeholder="Nama User" value="{{isset($user->name) ? $user->name : ''}}">
+    <label for="forNama">Nama</label>
+    <input type="text" class="form-control" id="forNama" name="nama" placeholder="Nama Member" value="{{isset($member->nama) ? $member->nama : ''}}">
+</div>
+<div class="form-group">
+    <label for="forAlamat">Alamat</label>
+    <input type="text" class="form-control" id="forAlamat" name="alamat" placeholder="Alamat Member" value="{{isset($member->alamat) ? $member->alamat : ''}}">
+</div>
+<div class="form-group">
+    <label for="forHp">Handphone</label>
+    <input type="text" class="form-control" id="forHp" name="hp" placeholder="No Hp Member" value="{{isset($member->hp) ? $member->hp : ''}}">
 </div>
 <div class="form-group">
     <label for="forEmail">Email</label>
-    <input type="email" class="form-control" id="forEmail" name="email" placeholder="Email User" value="{{isset($user->email) ? $user->email : ''}}">
+    <input type="email" class="form-control" id="forEmail" name="email" placeholder="Email Member" value="{{isset($member->email) ? $member->email : ''}}">
 </div>
 <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" >
+    <label for="forProfile">Profile</label>
+    <input type="file" name="profile" class="form-control" id="forProfile">
 </div>
 
 <div class="form-group">
-    <label for="forRole">Role</label>
-    <select name="role" id="forRole" class="form-control">
-        <option value="" disabled selected>== Pilih Role ==</option>
-        @if($s == 0)
-            @foreach ($roles as $id => $name)
-                <option value="{{ $id }}">{{ $name }}</option>
-            @endforeach
-        @else
-            @foreach ($roles as $id => $name)
-                <option value="{{ $id }}" {{ in_array($id, $userRoles) ? 'selected' : ''}} >{{ $name }}</option>
-{{--                <option value="{{ $id }}" {{ $id==$userRoles ? 'selected' : ''}} >{{ $name }}</option>--}}
-            @endforeach
-        @endif
+    <label for="forRole">Group</label>
+    <select name="group" id="forRole" class="form-control">
+        <option value="" disabled selected>== Pilih Group ==</option>
+        @foreach ($groups as $id => $kota)
+            <option value="{{ $id }}" {{ $id==(isset($member->group_id) ? $member->group_id : '') ? 'selected' : ''}} >{{ $kota }}</option>
+        @endforeach
     </select>
 </div>
 

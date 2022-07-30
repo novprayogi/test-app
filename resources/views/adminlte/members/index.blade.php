@@ -1,6 +1,6 @@
 @extends('layouts.backend-adminlte.app')
-@section('title','Users')
-@section('breadcrumb','Users')
+@section('title','Member')
+@section('breadcrumb','Member')
 @section('stylesheet-extra')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -13,7 +13,8 @@
             <div class="card-header">
                 <h3 class="card-title"></h3>
                 <div class="col-12 text-right">
-                    <a href="{{route('users.create')}}" class="btn btn-primary">Tambah Data</a>
+                    <a href="#" class="btn btn-primary">Import Excel</a>
+                    <a href="{{route('members.create')}}" class="btn btn-primary">Tambah Data</a>
                 </div>
             </div>
             @if ($message = Session::get('success'))
@@ -27,8 +28,10 @@
                     <thead>
                     <tr>
                         <th>No</th>
-                        <th>Name</th>
+                        <th>Nama</th>
+                        <th>Alamat</th>
                         <th>Email</th>
+                        <th>Image</th>
                         <th width="100px">Action</th>
                     </tr>
                     </thead>
@@ -37,8 +40,10 @@
                     <tfoot>
                     <tr>
                         <th>No</th>
-                        <th>Name</th>
+                        <th>Nama</th>
+                        <th>Alamat</th>
                         <th>Email</th>
+                        <th>Image</th>
                         <th width="100px">Action</th>
                     </tr>
                     </tfoot>
@@ -60,11 +65,13 @@
             var table = $('.data-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('users.index') }}",
+                ajax: "{{ route('members.index') }}",
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'name', name: 'name'},
+                    {data: 'nama', name: 'nama'},
+                    {data: 'alamat', name: 'alamat'},
                     {data: 'email', name: 'email'},
+                    {data: 'image', name: 'image'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
             });
