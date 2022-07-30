@@ -13,13 +13,24 @@
             <div class="card-header">
                 <h3 class="card-title"></h3>
                 <div class="col-12 text-right">
-                    <a href="#" class="btn btn-primary">Import Excel</a>
-                    <a href="{{route('members.create')}}" class="btn btn-primary">Tambah Data</a>
+                    @can('members.import')
+                        <a href="{{route('members.createExcel')}}" class="btn btn-primary">Import Excel</a>
+                    @endcan
+                    @can('members.create')
+                        <a href="{{route('members.create')}}" class="btn btn-primary">Tambah Data</a>
+                    @endcan
                 </div>
             </div>
             @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p>{{ $message }}</p>
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
+            @if ($message = Session::get('warning'))
+                <div class="alert alert-warning alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $message }}</strong>
                 </div>
             @endif
             <!-- /.card-header -->
@@ -71,7 +82,7 @@
                     {data: 'nama', name: 'nama'},
                     {data: 'alamat', name: 'alamat'},
                     {data: 'email', name: 'email'},
-                    {data: 'image', name: 'image'},
+                    {data: 'kota', name: 'kota'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
             });

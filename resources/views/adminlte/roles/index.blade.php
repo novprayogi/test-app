@@ -13,7 +13,9 @@
             <div class="card-header">
                 <h3 class="card-title"></h3>
                 <div class="col-12 text-right">
-                    <a href="{{route('roles.create')}}" class="btn btn-primary">Tambah Data</a>
+                    @can('roles.create')
+                        <a href="{{route('roles.create')}}" class="btn btn-primary">Tambah Data</a>
+                    @endcan
                 </div>
             </div>
             @if ($message = Session::get('success'))

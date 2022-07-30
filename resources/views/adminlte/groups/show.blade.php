@@ -22,6 +22,12 @@
                                 <label for="inputName" class="col-form-label">{{$group->kota}}</label>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="inputEmail" class="col-sm-2 col-form-label">Jumlah Member</label>
+                            <div class="col-sm-10">
+                                <label for="inputName" class="col-form-label">{{$group->members->count()}}</label>
+                            </div>
+                        </div>
 
                 </div>
             </div>

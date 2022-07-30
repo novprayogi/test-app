@@ -7,14 +7,16 @@
             <!-- small box -->
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>150</h3>
+                    <h3>{{$groups}}</h3>
 
-                    <p>New Orders</p>
+                    <p>Groups</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                @can('groups.index')
+                    <a href="{{{route('groups.index')}}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                @endcan
             </div>
         </div>
         <!-- ./col -->
@@ -22,14 +24,16 @@
             <!-- small box -->
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>53<sup style="font-size: 20px">%</sup></h3>
+                    <h3>{{$members}}</h3>
 
-                    <p>Bounce Rate</p>
+                    <p>Member</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                @can('members.index')
+                    <a href="{{route('members.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                @endcan
             </div>
         </div>
         <!-- ./col -->
@@ -37,14 +41,16 @@
             <!-- small box -->
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3>44</h3>
+                    <h3>{{$users}}</h3>
 
                     <p>User Registrations</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                @can('users.index')
+                    <a href="{{route('users.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                @endcan
             </div>
         </div>
         <!-- ./col -->
@@ -52,14 +58,16 @@
             <!-- small box -->
             <div class="small-box bg-danger">
                 <div class="inner">
-                    <h3>65</h3>
+                    <h3>{{$roles}}</h3>
 
-                    <p>Unique Visitors</p>
+                    <p>Roles</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-pie-graph"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                @can('roles.index')
+                    <a href="{{route('roles.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                @endcan
             </div>
         </div>
         <!-- ./col -->

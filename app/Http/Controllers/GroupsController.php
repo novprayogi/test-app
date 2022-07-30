@@ -7,9 +7,19 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
+use Auth;
 
 class GroupsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:groups.index')->only('index');
+        $this->middleware('permission:groups.create')->only('create','store');
+//        $this->middleware('permission:users.show')->only('show');
+        $this->middleware('permission:groups.edit')->only('edit','update');
+        $this->middleware('permission:groups.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,8 +35,12 @@ class GroupsController extends Controller
                     $btn = '<form action="'.route('groups.destroy', ['group'=>$row->id]).'" method="POST"> <input type="hidden" name="_method" value="delete" /><input type="hidden" name="_token" value="'.csrf_token().'">';
 //                    $btn .= '<div class="btn-group" role="group" aria-label="Basic example">';
                     $btn .= '<a href="'.route('groups.show', ['group'=>$row->id]).'" class="edit btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>';
-                    $btn .= '<a href="'.route('groups.edit', ['group'=>$row->id]).'" class="edit btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>';
-                    $btn .= '<button class="btn btn-sm btn-danger" onclick="return confirm("Are you sure?")" type="submit"><i class="fa fa-trash"></i></button></form>';
+                    if (Auth::user()->hasPermissionTo('groups.edit')) {
+                        $btn .= '<a href="' . route('groups.edit', ['group' => $row->id]) . '" class="edit btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>';
+                    }
+                    if (Auth::user()->hasPermissionTo('groups.destroy')) {
+                        $btn .= '<button class="btn btn-sm btn-danger" onclick="return confirm("Are you sure?")" type="submit"><i class="fa fa-trash"></i></button></form>';
+                    }
                     return $btn;
                 })
                 ->rawColumns(['action'])

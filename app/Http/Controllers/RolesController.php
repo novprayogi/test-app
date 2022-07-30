@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Yajra\DataTables\Facades\DataTables;
 use \Illuminate\Support\Facades\DB;
+use Auth;
 
 class RolesController extends Controller
 {
@@ -37,8 +38,12 @@ class RolesController extends Controller
                     $btn = '<form action="'.route('roles.destroy', ['role'=>$row->id]).'" method="POST"> <input type="hidden" name="_method" value="delete" /><input type="hidden" name="_token" value="'.csrf_token().'">';
 //                    $btn .= '<div class="btn-group" role="group" aria-label="Basic example">';
                     $btn .= '<a href="'.route('roles.show', ['role'=>$row->id]).'" class="edit btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>';
-                    $btn .= '<a href="'.route('roles.edit', ['role'=>$row->id]).'" class="edit btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>';
-                    $btn .= '<button class="btn btn-sm btn-danger" onclick="return confirm("Are you sure?")" type="submit"><i class="fa fa-trash"></i></button></form>';
+                    if (Auth::user()->hasPermissionTo('roles.edit')) {
+                        $btn .= '<a href="' . route('roles.edit', ['role' => $row->id]) . '" class="edit btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>';
+                    }
+                    if (Auth::user()->hasPermissionTo('roles.destroy')) {
+                        $btn .= '<button class="btn btn-sm btn-danger" onclick="return confirm("Are you sure?")" type="submit"><i class="fa fa-trash"></i></button></form>';
+                    }
                     return $btn;
                 })
                 ->rawColumns(['action'])

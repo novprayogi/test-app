@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\Facades\DataTables;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -35,8 +36,12 @@ class UsersController extends Controller
                     $btn = '<form action="'.route('users.destroy', ['user'=>$row->id]).'" method="POST"> <input type="hidden" name="_method" value="delete" /><input type="hidden" name="_token" value="'.csrf_token().'">';
 //                    $btn .= '<div class="btn-group" role="group" aria-label="Basic example">';
                     $btn .= '<a href="'.route('users.show', ['user'=>$row->id]).'" class="edit btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>';
-                    $btn .= '<a href="'.route('users.edit', ['user'=>$row->id]).'" class="edit btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>';
-                    $btn .= '<button class="btn btn-sm btn-danger" onclick="return confirm("Are you sure?")" type="submit"><i class="fa fa-trash"></i></button></form>';
+                    if (Auth::user()->hasPermissionTo('users.edit')) {
+                        $btn .= '<a href="' . route('users.edit', ['user' => $row->id]) . '" class="edit btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>';
+                    }
+                    if (Auth::user()->hasPermissionTo('users.destroy')) {
+                        $btn .= '<button class="btn btn-sm btn-danger" onclick="return confirm("Are you sure?")" type="submit"><i class="fa fa-trash"></i></button></form>';
+                    }
                     return $btn;
                 })
                 ->rawColumns(['action'])

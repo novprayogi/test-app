@@ -9,6 +9,7 @@ class Member extends Model
 {
     use HasFactory;
     protected $table = 'members';
+    public $incrementing = false;
     protected $fillable = [
         'id',
         'group_id',
