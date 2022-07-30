@@ -22,7 +22,8 @@ Aplikasi ini Untuk Test menggunakan Laravel Versi 8 dengan beberapa library yait
 
 ### CMD
 1. jalankan perintah **php artisan migrate:fresh --seed**
-2. kemudian jalankan perintah **php artisan serve**
+2. jalankan perintah **php artisan key:generate**
+3. kemudian jalankan perintah **php artisan serve**
 
 ## Login Ke Web
 1. di URL ketik **localhost:8000**
