@@ -25,7 +25,10 @@
                         <div class="form-group row">
                             <label for="inputSkills" class="col-sm-2 col-form-label">Roles</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                                @foreach($user->getRoleNames() as $v)
+                                <label class="label label-success">{{ $v  }}<br></label>
+{{--                                <input type="text" class="form-control" id="inputSkills" placeholder="Skills">--}}
+                                 @endforeach
                             </div>
                         </div>
 {{--                    </form>--}}

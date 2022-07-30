@@ -25,7 +25,12 @@
                         <div class="form-group row">
                             <label for="inputSkills" class="col-sm-2 col-form-label">Permissions</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                                @if(!empty($rolePermissions))
+                                    @foreach($rolePermissions as $v)
+                                        <label class="label label-success">{{ $v->name }},</label>
+                                    @endforeach
+                                @endif
+{{--                                <input type="text" class="form-control" id="inputSkills" placeholder="Skills">--}}
                             </div>
                         </div>
 {{--                    </form>--}}
