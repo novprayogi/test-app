@@ -32,6 +32,7 @@
                         </p>
                     </a>
                 </li>
+                @can('groups.index')
                 <li class="nav-item">
                     <a href="{{route('groups.index')}}" class="nav-link {{ (request()->is('groups*')) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
@@ -40,6 +41,8 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+                @can('members.index')
                 <li class="nav-item">
                     <a href="{{route('members.index')}}" class="nav-link {{ (request()->is('members*')) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user"></i>
@@ -48,6 +51,8 @@
                         </p>
                     </a>
                 </li>
+                @endcan
+                @canany(['users.index','roles.index'])
                 <li class="nav-item {{ (request()->is('users*')) ? 'menu-open' : '' || (request()->is('roles*')) ? 'menu-open' : '' || (request()->is('permissions*')) ? 'menu-open' : ''}}">
                     <a href="#" class="nav-link {{ (request()->is('users*')) ? 'active' : '' || (request()->is('roles*')) ? 'active' : '' || (request()->is('permissions*')) ? 'active' : ''}}">
                         <i class="nav-icon fas fa-bars"></i>
@@ -57,18 +62,22 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        @can('users.index')
                         <li class="nav-item">
                             <a href="{{route('users.index')}}" class="nav-link {{ (request()->is('users*')) ? 'active' : '' }}">
                                 <i class="far fa-address-book nav-icon"></i>
                                 <p>User</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('roles.index')
                         <li class="nav-item">
                             <a href="{{route('roles.index')}}" class="nav-link {{ (request()->is('roles*')) ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Role</p>
                             </a>
                         </li>
+                        @endcan
 {{--                        <li class="nav-item">--}}
 {{--                            <a href="{{route('permissions.index')}}" class="nav-link {{ (request()->is('permissions*')) ? 'active' : '' }}">--}}
 {{--                                <i class="fa fa-filter nav-icon"></i>--}}
@@ -76,6 +85,7 @@
 {{--                            </a>--}}
 {{--                        </li>--}}
                     </ul>
+                    @endcanany
                 </li>
             </ul>
         </nav>

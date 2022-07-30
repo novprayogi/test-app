@@ -4,11 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 use Yajra\DataTables\Facades\DataTables;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:users.index')->only('index');
+        $this->middleware('permission:users.create')->only('create','store');
+        $this->middleware('permission:users.show')->only('show');
+        $this->middleware('permission:users.edit')->only('edit','update');
+        $this->middleware('permission:users.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +52,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('adminlte.users.create');
+        $roles = Role::pluck('name','id');
+        $s = 0;
+        return view('adminlte.users.create',compact('roles','s'));
     }
 
     /**
@@ -63,9 +76,10 @@ class UsersController extends Controller
         $user = User::create([
             'name'=>$input['name'],
             'email'=>$input['email'],
-            'password'=> Hash::make($input['email'])
+            'password'=> Hash::make($input['password'])
         ]);
 
+        $user->assignRole($input['role']);
         return redirect()->route('users.index')->with('success','User created successfully');
     }
 
@@ -91,8 +105,13 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+        $roles = Role::pluck('name','id');
+        $userRoles = DB::table("model_has_roles")->where("model_has_roles.model_id",$user->id)
+            ->pluck('model_has_roles.role_id','model_has_roles.role_id')
+            ->all();
+        $s = 1;
 
-        return view('adminlte.users.edit',compact('user'));
+        return view('adminlte.users.edit',compact('user','roles','s','userRoles'));
     }
 
     /**
@@ -121,7 +140,7 @@ class UsersController extends Controller
             $user->password = Hash::make($input['password']);
         }
         $user->save();
-
+        $user->assignRole($input['role']);
         return redirect()->route('users.index')->with('success','User updated successfully');
     }
 

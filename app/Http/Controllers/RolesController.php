@@ -12,6 +12,16 @@ use \Illuminate\Support\Facades\DB;
 
 class RolesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:roles.index')->only('index');
+        $this->middleware('permission:roles.create')->only('create','store');
+        $this->middleware('permission:roles.show')->only('show');
+        $this->middleware('permission:roles.edit')->only('edit','update');
+        $this->middleware('permission:roles.destroy')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -110,7 +120,7 @@ class RolesController extends Controller
     public function update(Request $request, Role $role)
     {
         $request->validate([
-            'name' => 'required|unique:roles,name|max:255'. $role->id,
+            'name' => 'required|max:255|unique:roles,name,'.$role->id,
         ]);
 
         $role->name = $request->input('name');
