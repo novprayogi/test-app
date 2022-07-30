@@ -130,17 +130,24 @@ class UsersController extends Controller
 
         $user = User::find($id);
         $input = $request->all();
+        $userRoles = DB::table("model_has_roles")->where("model_has_roles.model_id", $user->id)
+            ->pluck('model_has_roles.role_id', 'model_has_roles.role_id')
+            ->first();
 
         $user->name = $input['name'];
         $user->email = $input['email'];
-        if (!empty($input['password'])){
+        if (!empty($input['password'])) {
             $request->validate([
                 'password' => 'required|min:8',
             ]);
             $user->password = Hash::make($input['password']);
         }
         $user->save();
-        $user->assignRole($input['role']);
+        if ($input['role'] != $userRoles){
+            $user->removeRole($userRoles);
+            $user->assignRole($input['role']);
+        }
+
         return redirect()->route('users.index')->with('success','User updated successfully');
     }
 
