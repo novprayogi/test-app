@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "nama": "Cemara",
+    "kota": "Cemara"
+  },
+  {
+    "id": "2",
+    "nama": "Lubuk Pakam",
+    "kota": "Lubuk Pakam"
+  },
+  {
+    "id": "3",
+    "nama": "Angkasa",
+    "kota": "Angkasa"
+  },
+  {
+    "id": "4",
+    "nama": "Tembung",
+    "kota": "Tembung"
+  },
+  {
+    "id": "5",
+    "nama": "Petisah",
+    "kota": "Petisah"
+  },
+  {
+    "id": "6",
+    "nama": "Medan Kota",
+    "kota": "Medan Kota"
+  }
+]

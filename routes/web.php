@@ -26,21 +26,16 @@ Route::middleware('auth')->group(function () {
         return view('adminlte.index');
     })->name('dashboard');
 
-    Route::resource('users',\App\Http\Controllers\UsersController::class);
-    Route::resource('roles',\App\Http\Controllers\RolesController::class);
+    Route::resources([
+        'users' => \App\Http\Controllers\UsersController::class,
+        'roles' => \App\Http\Controllers\RolesController::class,
+        'groups' => \App\Http\Controllers\GroupsController::class,
+        'members' => \App\Http\Controllers\MembersController::class
+    ]);
 
-    Route::get('/groups', function () {
-        return view('adminlte.index');
-    })->name('groups.index');
-
-    Route::get('/members', function () {
-        return view('adminlte.index');
-    })->name('members.index');
-
-
-    Route::get('/permissions', function () {
-        return view('adminlte.index');
-    })->name('permissions.index');
+//    Route::get('/permissions', function () {
+//        return view('adminlte.index');
+//    })->name('permissions.index');
 });
 
 require __DIR__.'/auth.php';
